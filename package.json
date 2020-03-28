@@ -1,0 +1,35 @@
+{
+  "name": "gtav-business-guide",
+  "version": "0.0.1",
+  "description": "A tool to help figure out how much businesses will cost to buy, how much money can be made from them, etc.",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build public/index.html",
+    "start": "parcel public/index.html -p 9000",
+    "test": "jest --watch"
+  },
+  "author": "Ethan Stewart <eestewart23@gmail.com>",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-personal"
+    ],
+    "rules": {
+      "react/no-unescaped-entities": "off"
+    }
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@emotion/babel-preset-css-prop": "^10.0.27",
+    "eslint": "^6.8.0",
+    "eslint-config-personal": "github:StewartEthan/eslint-config-personal",
+    "jest": "^25.2.3",
+    "parcel-bundler": "^1.12.4"
+  }
+}
