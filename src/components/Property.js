@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-export default function Property({ property }) {
+export default function Property({ property, handleOwnerClick }) {
   return (
     <div>
       <span className="name">{property.name}</span>
@@ -16,7 +16,7 @@ export default function Property({ property }) {
       <span className="additional-perk">{property.additionalPerk}</span>
       <div className="potential-owners">
         {property.potentialOwners.map(person => (
-          <button type="button" className="potential-owner">
+          <button type="button" className="potential-owner" onClick={() => handleOwnerClick(person)}>
             {person.name}
           </button>
         ))}
@@ -31,6 +31,7 @@ function formatMoney(amount) {
 }
 
 Property.propTypes = {
+  handleOwnerClick: PropTypes.func.isRequired,
   property: PropTypes.shape({
     name: PropTypes.string.isRequired,
     purchasePrice: PropTypes.number.isRequired,
