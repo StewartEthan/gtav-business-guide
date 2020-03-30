@@ -1,4 +1,5 @@
 import React from 'react'
+import characters from '../data/characters'
 import properties from '../data/properties'
 import Property from './Property'
 
@@ -33,18 +34,22 @@ export default function PropertyTool() {
   return (
     <>
       {Object.keys(ownership.byPerson).map(key => (
-        <>
-          <div>{key}</div>
+        <div>
+          <strong>{characters[key].name}</strong>
           {ownership.byPerson[key].length ? (
             <ul>
-              <li>
-                {ownership.byPerson[key].map(property => (
-                  <li>{property.name}</li>
-                ))}
-              </li>
+              {ownership.byPerson[key].map(property => (
+                <li>
+                  <button type="button" onClick={() => updateOwnership({ property, person: characters[key] })}>
+                    {property.name}
+                  </button>
+                </li>
+              ))}
             </ul>
-          ) : null}
-        </>
+          ) : (
+            <span>{characters[key].name} doesn't own any properties</span>
+          )}
+        </div>
       ))}
       <ul>
         {properties.map(property => (
