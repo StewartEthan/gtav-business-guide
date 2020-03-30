@@ -3,42 +3,49 @@ import properties from '../data/properties'
 import Property from './Property'
 
 const intialOwnership = {
-  ownershipByPerson: {
+  byPerson: {
     FRANKLIN: [],
     MICHAEL: [],
     TREVOR: [],
   },
-  ownershipByProperty: properties.reduce((acc, property) => {
+  byProperty: properties.reduce((acc, property) => {
     acc[property.name] = null
     return acc
   }, {}),
 }
-const ownershipReducer = (state, { person, property }) => {
-  if (state.ownershipByProperty[property.name] === person) {
-    state.ownershipByProperty[property.name] = null
-    state.ownershipByPerson[person.key] = state.ownershipByPerson[person.key].filter(owned => owned !== property)
+const ownershipReducer = (ownership, { person, property }) => {
+  if (ownership.byProperty[property.name] === person) {
+    ownership.byProperty[property.name] = null
+    ownership.byPerson[person.key] = ownership.byPerson[person.key].filter(owned => owned !== property)
   } else {
-    const currentOwner = state.ownershipByProperty[property.name]
+    const currentOwner = ownership.byProperty[property.name]
     if (currentOwner) {
-      state.ownershipByPerson[currentOwner.key] = state.ownershipByPerson[currentOwner.key].filter(
-        owned => owned !== property
-      )
+      ownership.byPerson[currentOwner.key] = ownership.byPerson[currentOwner.key].filter(owned => owned !== property)
     }
-    state.ownershipByProperty[property.name] = person
-    state.ownershipByPerson[person.key].push(property)
+    ownership.byProperty[property.name] = person
+    ownership.byPerson[person.key].push(property)
   }
-  return { ...state }
+  return { ...ownership }
 }
 
 export default function PropertyTool() {
-  const [ownershipState, updateOwnership] = React.useReducer(ownershipReducer, intialOwnership)
+  const [ownership, updateOwnership] = React.useReducer(ownershipReducer, intialOwnership)
   return (
     <>
-      <ul>
-        {Object.keys(ownershipState.ownershipByPerson).map(key =>
-          ownershipState.ownershipByPerson[key].map(property => <li>{property.name}</li>)
-        )}
-      </ul>
+      {Object.keys(ownership.byPerson).map(key => (
+        <>
+          <div>{key}</div>
+          {ownership.byPerson[key].length ? (
+            <ul>
+              <li>
+                {ownership.byPerson[key].map(property => (
+                  <li>{property.name}</li>
+                ))}
+              </li>
+            </ul>
+          ) : null}
+        </>
+      ))}
       <ul>
         {properties.map(property => (
           <li>
