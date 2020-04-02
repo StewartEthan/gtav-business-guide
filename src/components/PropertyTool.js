@@ -40,8 +40,15 @@ export default function PropertyTool() {
             <ul>
               {ownership.byPerson[key].map(property => (
                 <li>
-                  <button type="button" onClick={() => updateOwnership({ property, person: characters[key] })}>
-                    {property.name}
+                  <span>{property.name}</span>
+                  <button
+                    type="button"
+                    aria-label={`Remove ${property.name} from list`}
+                    onClick={() => updateOwnership({ property, person: characters[key] })}
+                  >
+                    <span title={`Remove ${property.name} from list`} aria-hidden>
+                      🗑️
+                    </span>
                   </button>
                 </li>
               ))}
