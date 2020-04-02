@@ -27,6 +27,7 @@ export default function App() {
           fontFamily: `'Passion One', sans-serif`,
           fontSize: `44px`,
           letterSpacing: `1px`,
+          textTransform: `uppercase`,
         }}
       >
         GTA V Properties
