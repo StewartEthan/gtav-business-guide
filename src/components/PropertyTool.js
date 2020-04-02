@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import React from 'react'
 import characters from '../data/characters'
 import properties from '../data/properties'
@@ -28,6 +30,13 @@ const ownershipReducer = (ownership, { person, property }) => {
   }
   return { ...ownership }
 }
+const propertyListCss = css`
+  display: grid;
+  grid-row-gap: 1.5em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`
 
 export default function PropertyTool() {
   const [ownership, updateOwnership] = React.useReducer(ownershipReducer, intialOwnership)
@@ -58,7 +67,7 @@ export default function PropertyTool() {
           )}
         </div>
       ))}
-      <ul>
+      <ul css={propertyListCss}>
         {properties.map(property => (
           <li>
             <Property

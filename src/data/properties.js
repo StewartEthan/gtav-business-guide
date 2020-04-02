@@ -25,7 +25,7 @@ export default [
         unit: `week`,
       },
     ],
-    additionalPerk: `Free cab rides for Franklin`,
+    additionalPerk: `Includes free cab rides for Franklin`,
     potentialOwners: [FRANKLIN],
   },
   {
@@ -37,7 +37,7 @@ export default [
         unit: `week`,
       },
     ],
-    additionalPerk: `Free upgrades at purchased garage for Franklin`,
+    additionalPerk: `Includes free upgrades at purchased garage for Franklin`,
     potentialOwners: [FRANKLIN],
   },
   {
