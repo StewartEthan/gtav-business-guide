@@ -20,6 +20,11 @@ export default function App() {
           * > * {
             box-sizing: border-box;
           }
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
         `}
       />
       <h1
@@ -27,16 +32,17 @@ export default function App() {
           fontFamily: `'Passion One', sans-serif`,
           fontSize: `44px`,
           letterSpacing: `1px`,
+          margin: 0,
           textTransform: `uppercase`,
         }}
       >
-        GTA V Properties
+        GTA 5 Properties
       </h1>
       {/* <div>You can buy properties that can generate income. It's pretty dope</div> */}
       <PropertyTool />
       <footer
         css={{
-          margin: `1.5em auto 0.25em`,
+          margin: `1.5em 0 0.25em`,
         }}
       >
         <span css={{ fontSize: `1em` }}>

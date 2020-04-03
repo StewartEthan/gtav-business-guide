@@ -33,9 +33,6 @@ const ownershipReducer = (ownership, { person, property }) => {
 const propertyListCss = css`
   display: grid;
   grid-row-gap: 1.5em;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 `
 
 export default function PropertyTool() {
@@ -48,7 +45,13 @@ export default function PropertyTool() {
           {ownership.byPerson[key].length ? (
             <ul>
               {ownership.byPerson[key].map(property => (
-                <li>
+                <li
+                  css={css`
+                    display: inline-grid;
+                    grid-column-gap: 0.5em;
+                    grid-template-columns: auto auto;
+                  `}
+                >
                   <span>{property.name}</span>
                   <button
                     type="button"
@@ -56,7 +59,19 @@ export default function PropertyTool() {
                     onClick={() => updateOwnership({ property, person: characters[key] })}
                   >
                     <span title={`Remove ${property.name} from list`} aria-hidden>
-                      🗑️
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M0 0h24v24H0z" stroke="none" />
+                        <path d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 002 2h8a2 2 0 002-2l1-12M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3" />
+                      </svg>
                     </span>
                   </button>
                 </li>
