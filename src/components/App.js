@@ -38,7 +38,6 @@ export default function App() {
       >
         GTA 5 Properties
       </h1>
-      {/* <div>You can buy properties that can generate income. It's pretty dope</div> */}
       <PropertyTool />
       <footer
         css={{
