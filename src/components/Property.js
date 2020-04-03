@@ -31,6 +31,7 @@ const propertyCss = css`
   .potential-owners {
     display: grid;
     grid-column: 1 / -1;
+    grid-column-gap: 0.25em;
     grid-template-columns: repeat(auto-fit, minmax(calc(120px - 1em), 1fr));
     margin-top: 0.375em;
   }
@@ -59,7 +60,7 @@ export default function Property({ property, handleOwnerClick }) {
             type="button"
             className="potential-owner"
             onClick={() => handleOwnerClick(person)}
-            css={{ backgroundColor: person.color }}
+            css={{ backgroundColor: person.colors.main, border: `2px solid ${person.colors.dark}` }}
           >
             {person.name}
           </button>
