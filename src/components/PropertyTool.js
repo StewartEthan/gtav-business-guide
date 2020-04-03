@@ -39,49 +39,51 @@ export default function PropertyTool() {
   const [ownership, updateOwnership] = React.useReducer(ownershipReducer, intialOwnership)
   return (
     <>
-      {Object.keys(ownership.byPerson).map(key => (
-        <div>
-          <strong>{characters[key].name}</strong>
-          {ownership.byPerson[key].length ? (
-            <ul>
-              {ownership.byPerson[key].map(property => (
-                <li
-                  css={css`
-                    display: inline-grid;
-                    grid-column-gap: 0.5em;
-                    grid-template-columns: auto auto;
-                  `}
-                >
-                  <span>{property.name}</span>
-                  <button
-                    type="button"
-                    aria-label={`Remove ${property.name} from list`}
-                    onClick={() => updateOwnership({ property, person: characters[key] })}
+      <div css={{ position: `sticky`, top: 0 }}>
+        {Object.keys(ownership.byPerson).map(key => (
+          <div>
+            <strong>{characters[key].name}</strong>
+            {ownership.byPerson[key].length ? (
+              <ul>
+                {ownership.byPerson[key].map(property => (
+                  <li
+                    css={css`
+                      display: inline-grid;
+                      grid-column-gap: 0.5em;
+                      grid-template-columns: auto auto;
+                    `}
                   >
-                    <span title={`Remove ${property.name} from list`} aria-hidden>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        strokeWidth="2"
-                        stroke="currentColor"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M0 0h24v24H0z" stroke="none" />
-                        <path d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 002 2h8a2 2 0 002-2l1-12M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3" />
-                      </svg>
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <span>{characters[key].name} doesn't own any properties</span>
-          )}
-        </div>
-      ))}
+                    <span>{property.name}</span>
+                    <button
+                      type="button"
+                      aria-label={`Remove ${property.name} from list`}
+                      onClick={() => updateOwnership({ property, person: characters[key] })}
+                    >
+                      <span title={`Remove ${property.name} from list`} aria-hidden>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          strokeWidth="2"
+                          stroke="currentColor"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M0 0h24v24H0z" stroke="none" />
+                          <path d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 002 2h8a2 2 0 002-2l1-12M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3" />
+                        </svg>
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <span>{characters[key].name} doesn't own any properties</span>
+            )}
+          </div>
+        ))}
+      </div>
       <ul css={propertyListCss}>
         {properties.map(property => (
           <li>
