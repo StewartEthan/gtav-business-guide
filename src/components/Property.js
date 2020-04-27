@@ -13,15 +13,13 @@ const propertyCss = css`
     grid-column: 1 / -1;
   }
   .purchase-price {
-    /* FIXME: Find better red */
-    color: #ff0000;
+    color: #ee0000;
   }
   .income-wrapper {
     display: grid;
   }
   .income {
-    /* FIXME: Find better green */
-    color: #00cc00;
+    color: #008900;
   }
   .additional-perk {
     font-size: 0.825em;
@@ -48,8 +46,8 @@ export default function Property({ property, handleOwnerClick }) {
       <span className="additional-perk">{property.additionalPerk}</span>
       <span className="purchase-price">{formatMoney(property.purchasePrice)}</span>
       <div className="income-wrapper">
-        {property.income.map(income => (
-          <span className="income">
+        {property.income.map((income, idx) => (
+          <span className="income" key={btoa(`${property.name}-income-${idx}`)}>
             {formatMoney(income.amount)} / {income.unit}
           </span>
         ))}
@@ -57,10 +55,15 @@ export default function Property({ property, handleOwnerClick }) {
       <div className="potential-owners">
         {property.potentialOwners.map(person => (
           <button
+            key={btoa(`${person.name}-${property.name}`)}
             type="button"
             className="potential-owner"
             onClick={() => handleOwnerClick(person)}
-            css={{ backgroundColor: person.colors.main, border: `2px solid ${person.colors.dark}` }}
+            css={{
+              backgroundColor: person.colors.main,
+              border: `2px solid ${person.colors.dark}`,
+              borderRadius: `4px`,
+            }}
           >
             {person.name}
           </button>
@@ -90,7 +93,11 @@ Property.propTypes = {
     potentialOwners: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        color: PropTypes.string.isRequired,
+        colors: PropTypes.shape({
+          main: PropTypes.string.isRequired,
+          dark: PropTypes.string.isRequired,
+          light: PropTypes.string.isRequired,
+        }).isRequired,
       })
     ).isRequired,
   }).isRequired,

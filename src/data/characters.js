@@ -5,6 +5,7 @@ export default {
     colors: {
       main: `#88eeaa`,
       dark: `#62c884`,
+      darker: `#157B37`,
       light: `#aeffd0`,
     },
   },
@@ -14,6 +15,7 @@ export default {
     colors: {
       main: `#00b4d7`,
       dark: `#008eb1`,
+      darker: `#004164`,
       light: `#26dafd`,
     },
   },
@@ -23,6 +25,7 @@ export default {
     colors: {
       main: `#ffa452`,
       dark: `#d97e2c`,
+      darker: `#8c3100`,
       light: `#ffca78`,
     },
   },
